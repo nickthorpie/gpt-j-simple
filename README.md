@@ -3,10 +3,10 @@
 This is a wrapper for kingoflolz' [mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax) for easy initialization. The goal of this project is to provide a simple way of creating, finetuning and training meshed transformers.
  
 ### List of working features
-1. download either gpt-j-6b full or slim with `download_gptj('slim')`
-2. Easily initialize a sharded transformer network with `sess=start_jax_sess(server='colab')`. Currently only accepts server='colab'. I want to adjust this to automatically detect the setup of environment, or to easily describe it.
-3. Load in a pretrained tranformer (GPT-j) into a sharded transformer network using `load_gptj(sess)`
-4. Generate responses with `generate(sess,prefix)`.
+1. `download_gptj('slim')` download either gpt-j-6b full or slim
+2. `sess=start_jax_sess(server='colab')` to easily initialize a sharded transformer network. Currently only accepts server='colab'. I want to adjust this to automatically detect the setup of environment, or to easily describe it.
+3. `load_gptj(sess)` to load in a pretrained tranformer (GPT-j) into a sharded transformer network.
+4. `generate(sess,prefix)` to generate responses.
 
 ### Currently working on
 Right now my challenge is in writing the code for **train.py**. The kingoflolz [train.py](https://github.com/kingoflolz/mesh-transformer-jax/blob/8d26cd8cf9cc7e64a7ac18ecbe4a382ffd399691/train.py "mesh-transformer-jax/train.py") pulls from a lot of constructs that I'm unfamilliar with. Specifically, the structure of their data is a mystery, and I haven't had the time to dive into their TFRecords wrapper.
