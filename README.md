@@ -9,7 +9,7 @@ This is a wrapper for kingoflolz' [mesh-transformer-jax](https://github.com/king
 4. Generate responses with `generate(sess,prefix)`.
 
 ### Currently working on
-Right now my challenge is in writing the code for **train.py**. The kingoflolz [train.py](https://github.com/kingoflolz/mesh-transformer-jax/blob/8d26cd8cf9cc7e64a7ac18ecbe4a382ffd399691/train.py mesh-transformer-jax/train.py) pulls from a lot of constructs that I'm unfamilliar with. Specifically, the structure of their data is a mystery, and I haven't had the time to dive into their TFRecords wrapper.
+Right now my challenge is in writing the code for **train.py**. The kingoflolz [train.py](https://github.com/kingoflolz/mesh-transformer-jax/blob/8d26cd8cf9cc7e64a7ac18ecbe4a382ffd399691/train.py "mesh-transformer-jax/train.py") pulls from a lot of constructs that I'm unfamilliar with. Specifically, the structure of their data is a mystery, and I haven't had the time to dive into their TFRecords wrapper.
 
 ### Todo
 1. Finish up the training/finetuning sequence, which probably involves making a function to format training data
