@@ -21,4 +21,3 @@ ftfy
 xtarfile[zstd]
 git+https://github.com/kingoflolz/mesh-transformer-jax.git
 jax==0.2.12
-optax
