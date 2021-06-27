@@ -163,7 +163,7 @@ def load_gptj(sess,
             print('not fully done this function either')
 
     params = sess.config
-    model_path = os.path.join(model_dir,f'step_{ckpt}/')
+    model_path = os.path.join(model_dir,f'step_{ckpt}','')
 
 
 
