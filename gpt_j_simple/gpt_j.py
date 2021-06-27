@@ -173,3 +173,48 @@ def load_gptj(sess,
     sess.state = sess.move_xmap(sess.state, np.zeros(params['cores_per_replica']))
 
     return sess
+
+
+def generate(sess,
+             prefix=None,
+             truncate=None,
+             nsamples=1,
+             batch_size=1,
+             gen_len=1023,
+             temp=0.7,
+             top_p=0,
+             include_prefix=True,
+             action='print'):
+    params = sess.config['params']
+    seq = params["seq"]
+    tokenizer = transformers.GPT2TokenizerFast.from_pretrained('gpt2')
+    tokens = tokenizer.encode(prefix)
+
+    pad_amount = seq - len(tokens)
+
+    total_batch = params['per_replica_batch'] * jax.device_count() // params['cores_per_replica']
+
+    padded_tokens = np.pad(tokens, ((pad_amount, 0),)).astype(np.uint32)
+    batched_tokens = np.array([padded_tokens] * total_batch)
+    length = np.ones(total_batch, dtype=np.uint32) * len(tokens)
+
+    start = time.time()
+    output = sess.generate(batched_tokens, length, gen_len,
+                           {"top_p": np.ones(total_batch) * top_p,
+                            "temp": np.ones(total_batch) * temp
+                            }
+                           )
+
+    samples = []
+    decoded_tokens = output[1][0]
+
+    for o in decoded_tokens[:, :, 0]:
+        decoded = tokenizer.decode(o)
+        if truncate in o:
+            decoded = o.split(truncate, 1)[0]
+        samples.append(f"\033[1m{prefix}\033[0m{decoded}")
+
+    print(f"completion done in {time.time() - start:06}s")
+    if action is 'print':
+        print(samples[0])
+    return samples[0]
