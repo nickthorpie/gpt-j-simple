@@ -12,6 +12,7 @@ import jax
 from jax.config import config
 from jax.experimental import maps
 import optax
+import numpy as np
 try: import transformers
 except: import transformers
 
@@ -145,6 +146,7 @@ def load_gptj(sess,
 
     TODO: check if ckpt matches number of cores and automatically reshard
     """
+
     if project_name is not None:
       model_dir = os.path.join(model_dir,project_name)
 
@@ -162,7 +164,10 @@ def load_gptj(sess,
 
     params = sess.config
     model_path = os.path.join(model_dir,f'step_{ckpt}')
-    sess.state = read_ckpt(sess.state, model_path, params['devices'].shape[1])
+
+
+
+    sess.state = read_ckpt(sess.state, model_path, params['cores_per_replica'])
 
     sess.state = sess.move_xmap(sess.state, np.zeros(params['cores_per_replica']))
 
