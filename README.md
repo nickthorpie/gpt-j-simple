@@ -9,6 +9,15 @@ This is a wrapper for kingoflolz' [mesh-transformer-jax](https://github.com/king
 3. `load_gptj(sess)` to load in a pretrained tranformer (GPT-j) into a sharded transformer network.
 4. `generate(sess,prefix)` to generate responses.
 
+### Installation:
+install in colab with
+```
+!git clone https://github.com/nickthorpie/gpt-j-simple.git
+!pip install -r gpt-j-simple/requirements.txt
+!pip install gpt-j-simple/
+```
+and get started with
+`from gpt_j_simple import download_gptj,start_jax_sess,load_gptj, generate`
 ### Currently working on
 Right now my challenge is in writing the code for **train.py**. The kingoflolz [train.py](https://github.com/kingoflolz/mesh-transformer-jax/blob/8d26cd8cf9cc7e64a7ac18ecbe4a382ffd399691/train.py "mesh-transformer-jax/train.py") pulls from a lot of constructs that I'm unfamilliar with. Specifically, the structure of their data is a mystery, and I haven't had the time to dive into their TFRecords wrapper.
 
