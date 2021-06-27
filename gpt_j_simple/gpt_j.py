@@ -137,6 +137,8 @@ def load_gptj(sess,
             with open(f"{model_dir}/meta.json", "r") as f:
                 meta = json.load(f)
                 ckpt = meta['step']
+        except:
+            print('not fully done this function either')
 
     models = dict.fromkeys(['slim', 'small', 'lite', 'step_383500_slim'], 'step_383500_slim')
     models.update(dict.fromkeys(['big', 'large', 'full', 'step_383500'], 'step_383500'))
