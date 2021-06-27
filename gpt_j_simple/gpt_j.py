@@ -21,7 +21,6 @@ from mesh_transformer.checkpoint import read_ckpt
 from mesh_transformer.sampling import nucleaus_sample
 from mesh_transformer.transformer_shard import CausalTransformer
 
-
 def start_jax_sess(server='local', params={}):
     """
     Automatically a causal transformer based on your environment. Currently only set up for google colab.
@@ -107,7 +106,7 @@ def download_gptj(model_dir='models',
       raise Exception("project already exists. Pass overwrite=True if you want to overwrite it")
 
     print(f"Downloading {model_name}")
-    download_file_with_progress(sub_dir=model_dir,
+    _download_file_with_progress(sub_dir=model_dir,
                                 url=f"https://the-eye.eu/public/AI/GPT-J-6B/{model_name}.tar.zstd",
                                 file_name = f"{model_name}.tar.zstd",file_size = file_sizes[model_name])
 
