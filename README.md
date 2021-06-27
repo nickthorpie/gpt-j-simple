@@ -1,6 +1,7 @@
 # gpt-j-simple
  
-This is a wrapper for kingoflolz' [mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax) for easy initialization. The goal of this project is to provide a simple way of creating, finetuning and training meshed transformers.
+### Project Description and Goals
+This is a wrapper for kingoflolz' [mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax) for easy initialization. The goal of this project is to provide a simple way of creating, finetuning and training meshed transformers. At the moment, only support for google colab is present.
  
 ### List of working features
 1. `download_gptj('slim')` download either gpt-j-6b full or slim
@@ -13,7 +14,7 @@ Right now my challenge is in writing the code for **train.py**. The kingoflolz [
 
 ### Todo
 1. Finish up the training/finetuning sequence, which probably involves making a function to format training data for the user.
-2. Once we have a working code for colab, modify our start_jax_sess to automatically detect the type of environment, find gpu's, etc.
+2. Once we have a working code for colab, modify our start_jax_sess to automatically detect the type of environment, find gpu's, etc. Should be all we need to support external environments.
 3. Make a simple one-liner for resharding a transformer
 4. implement an option for training with buckets. To the user it should be as simple setting model_dir to the `gs://bucket_name`.
 
