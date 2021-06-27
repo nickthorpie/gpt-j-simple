@@ -183,8 +183,9 @@ def generate(sess,
              temp=0.7,
              top_p=0,
              include_prefix=True,
-             action='print'):
-    params = sess.config['params']
+             action='print',
+             params = None):
+    params = default_params(params)
     seq = params["seq"]
     tokenizer = transformers.GPT2TokenizerFast.from_pretrained('gpt2')
     tokens = tokenizer.encode(prefix)
@@ -209,8 +210,9 @@ def generate(sess,
 
     for o in decoded_tokens[:, :, 0]:
         decoded = tokenizer.decode(o)
-        if truncate in o:
-            decoded = o.split(truncate, 1)[0]
+        if truncate is not None:
+            if truncate in str(decoded):
+            decoded = o.split(str(decoded), 1)[0]
         samples.append(f"\033[1m{prefix}\033[0m{decoded}")
 
     print(f"completion done in {time.time() - start:06}s")
