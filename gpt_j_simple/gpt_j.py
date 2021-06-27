@@ -160,13 +160,8 @@ def load_gptj(sess,
         except:
             print('not fully done this function either')
 
-    models = dict.fromkeys(['slim', 'small', 'lite', 'step_383500_slim'], 'step_383500_slim')
-    models.update(dict.fromkeys(['big', 'large', 'full', 'step_383500'], 'step_383500'))
-    model_name = models[model_name]
-    model_path = os.path.join(model_dir, f'step_{ckpt}')
     params = sess.config
-
-    model_path = os.path.join(model_dir, model_name, '')
+    model_path = os.path.join(model_dir,f'step_{ckpt}')
     sess.state = read_ckpt(sess.state, model_path, params['devices'].shape[1])
 
     sess.state = sess.move_xmap(sess.state, np.zeros(params['cores_per_replica']))
