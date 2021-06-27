@@ -4,14 +4,12 @@ import numpy as np
 from tqdm import tqdm
 import xtarfile
 import shutil
-
-import os
+import json
 import requests
-from jax.config import config
-
 import time
 
 import jax
+from jax.config import config
 from jax.experimental import maps
 import optax
 try: import transformers
@@ -20,6 +18,7 @@ except: import transformers
 from mesh_transformer.checkpoint import read_ckpt
 from mesh_transformer.sampling import nucleaus_sample
 from mesh_transformer.transformer_shard import CausalTransformer
+
 
 def start_jax_sess(server='local', params={}):
     """
