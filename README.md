@@ -17,7 +17,9 @@ install in colab with
 !pip install gpt-j-simple/
 ```
 and get started with
-`from gpt_j_simple import download_gptj,start_jax_sess,load_gptj, generate`
+```
+from gpt_j_simple import download_gptj,start_jax_sess,load_gptj, generate
+```
 ### Currently working on
 Right now my challenge is in writing the code for **train.py**. The kingoflolz [train.py](https://github.com/kingoflolz/mesh-transformer-jax/blob/8d26cd8cf9cc7e64a7ac18ecbe4a382ffd399691/train.py "mesh-transformer-jax/train.py") pulls from a lot of constructs that I'm unfamilliar with. Specifically, the structure of their data is a mystery, and I haven't had the time to dive into their TFRecords wrapper.
 
