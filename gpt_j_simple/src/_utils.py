@@ -1,3 +1,10 @@
+import os
+import requests
+from jax.config import config
+
+import jax
+from tqdm import tqdm
+
 def _download_file_with_progress(sub_dir,url,file_name,file_size=1024**3):
     """General utility for incrementally downloading files from the internet
     with progress bar
